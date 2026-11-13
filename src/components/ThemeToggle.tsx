@@ -34,7 +34,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={label}
       title={label}
-      className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-line text-ink transition-colors hover:bg-sunken"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink transition-colors hover:bg-sunken"
     >
       {theme === "dark" ? (
         <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">

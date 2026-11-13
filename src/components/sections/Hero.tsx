@@ -1,88 +1,46 @@
 import Image from "next/image";
 import Link from "next/link";
-import { clientWork, site } from "@/content/site";
+import { copy, site } from "@/content/site";
 
 export function Hero() {
   return (
-    <section className="mx-auto flex max-w-site flex-wrap items-center gap-12 px-4 pb-20 pt-14 sm:px-6 md:pt-[72px] lg:gap-14">
-      <div className="flex min-w-0 flex-[1_1_520px] flex-col gap-6">
-        <p className="font-mono text-[13px] uppercase tracking-[0.04em] text-muted">React · Next.js · Laravel · Python</p>
-        <h1 className="font-display text-[40px] font-extrabold leading-[1.08] tracking-[-0.025em] sm:text-5xl lg:text-[54px]">
-          Full-stack developer for fast websites, bug fixes and automation
+    <section className="mx-auto grid max-w-site items-start gap-x-12 gap-y-14 px-5 pb-20 pt-12 sm:px-8 md:grid-cols-[minmax(0,1fr)_280px] md:pt-20 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <div>
+        <p className="origin-left -rotate-2 font-hand text-[38px] leading-none text-link">{copy.hello}</p>
+        <h1 className="mt-4 font-display text-[42px] font-bold leading-[1.03] tracking-[-0.035em] sm:text-6xl lg:text-[72px]">
+          I build websites, <span className="hl">fix the broken ones</span>, and automate the boring work.
         </h1>
-        <p className="max-w-[560px] text-lg leading-relaxed text-body sm:text-[19px]">
-          I build and repair websites in React, Next.js and Laravel, and automate messy data work with Python and
-          Excel. Clear communication, tested code, delivered on time.
-        </p>
-        <div className="flex flex-wrap gap-3.5">
+        <p className="mt-7 max-w-[56ch] text-lg text-body sm:text-xl sm:leading-relaxed">{copy.heroIntro}</p>
+        <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
           <Link
             href="/#contact"
-            className="rounded-lg bg-accent px-6 py-[15px] text-base font-semibold text-white transition-colors hover:bg-accent-hover"
+            className="rounded-full bg-ink px-7 py-4 text-lg font-semibold text-page transition-opacity hover:opacity-85"
           >
-            Start a project
+            Tell me about your project
           </Link>
-          <Link
-            href="/#work"
-            className="rounded-lg border border-field/60 bg-surface px-6 py-[14px] text-base font-semibold text-ink transition-colors hover:border-ink"
-          >
-            See my work
+          <Link href="/#work" className="link py-2 text-lg">
+            or see my work
           </Link>
         </div>
-        <ul className="flex flex-wrap gap-x-6 gap-y-2 text-[15px] text-body" aria-label="Highlights">
-          <li className="flex items-center gap-2">
-            <Check /> {clientWork.length} live client sites
-          </li>
-          <li className="flex items-center gap-2">
-            <Check /> Fixed prices
-          </li>
-          <li className="flex items-center gap-2">
-            <Check /> Reply within 24 hours
-          </li>
-        </ul>
+        <p className="mt-9 flex items-start gap-3 text-base text-muted">
+          <span aria-hidden="true" className="mt-[9px] h-2.5 w-2.5 shrink-0 rounded-full bg-good-dot" />
+          {copy.heroStatus}
+        </p>
       </div>
 
-      <div className="w-full min-w-0 max-w-[420px] flex-[0_1_400px] overflow-hidden rounded-xl border border-line bg-surface shadow-[0_1px_2px_rgb(14_27_51/0.04),0_12px_32px_-12px_rgb(14_27_51/0.18)]">
+      {/* A printed photo, slightly crooked. It stays white in dark mode, like a real print. */}
+      <figure className="w-[260px] rotate-[2.5deg] justify-self-center bg-white p-3 pb-2 shadow-[0_2px_4px_rgb(0_0_0/0.08),0_18px_40px_-14px_rgb(0_0_0/0.35)] md:mt-10 md:w-full md:justify-self-end">
         <Image
           src="/images/rabiul.jpg"
           alt={`Portrait of ${site.name}`}
           width={1000}
           height={1339}
           priority
-          sizes="(max-width: 480px) 100vw, 400px"
-          className="aspect-[5/4] w-full object-cover object-[center_22%]"
+          sizes="320px"
+          className="aspect-[4/5] w-full object-cover object-[center_15%]"
         />
-        <dl className="font-mono text-[13px]">
-          <Row label="Based in" value={`${site.location} (${site.timezone})`} />
-          <Row label="Works with" value="UK, EU and US clients" />
-          <div className="flex justify-between gap-4 border-t border-line px-[18px] py-3">
-            <dt className="text-muted">Status</dt>
-            <dd className="flex items-center gap-2 font-medium text-good">
-              <span aria-hidden="true" className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-good-dot opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-good-dot" />
-              </span>
-              Available for new work
-            </dd>
-          </div>
-        </dl>
-      </div>
+        <figcaption className="pt-2 text-center font-hand text-[26px] leading-tight text-[#1A1A17]">Dhaka, GMT+6</figcaption>
+      </figure>
     </section>
-  );
-}
-
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex justify-between gap-4 border-t border-line px-[18px] py-3">
-      <dt className="text-muted">{label}</dt>
-      <dd className="text-right">{value}</dd>
-    </div>
-  );
-}
-
-function Check() {
-  return (
-    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="text-link">
-      <path d="M5 12.5l4.5 4.5L19 7.5" />
-    </svg>
   );
 }

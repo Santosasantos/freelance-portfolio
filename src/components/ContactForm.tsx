@@ -9,7 +9,7 @@ type Status = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind
 const empty: ContactInput = { name: "", email: "", need: "", budget: budgets[4], deadline: "", website: "" };
 
 const inputClass =
-  "w-full min-w-0 rounded-lg border border-field bg-surface px-3.5 py-3 text-base text-ink placeholder:text-muted/80 transition-colors focus:border-link aria-[invalid=true]:border-bad";
+  "w-full min-w-0 rounded-md border border-field bg-surface px-4 py-3 text-[17px] text-ink placeholder:text-muted transition-colors focus:border-ink aria-[invalid=true]:border-bad";
 
 export function ContactForm() {
   const [values, setValues] = useState<ContactInput>(empty);
@@ -53,8 +53,8 @@ export function ContactForm() {
 
   if (status.kind === "sent") {
     return (
-      <div role="status" className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-7">
-        <h3 className="font-display text-2xl font-extrabold">Thanks, your message is on its way</h3>
+      <div role="status" className="flex flex-col gap-3 self-start bg-sunken p-7">
+        <h3 className="font-display text-2xl font-bold">Thanks, your message is on its way</h3>
         <p className="text-body">I will reply within one working day. Check your spam folder if you do not hear back.</p>
         <button type="button" onClick={() => setStatus({ kind: "idle" })} className="link self-start py-2 text-left font-semibold">
           Send another message
@@ -69,9 +69,9 @@ export function ContactForm() {
       onSubmit={onSubmit}
       noValidate
       aria-label="Project enquiry"
-      className="flex flex-col gap-[18px] rounded-xl border border-line bg-surface p-5 sm:p-7"
+      className="flex flex-col gap-5"
     >
-      <div className="flex flex-wrap gap-[18px]">
+      <div className="flex flex-wrap gap-5">
         <Field id="name" label="Your name" error={errors.name}>
           <input
             id="name"
@@ -117,7 +117,7 @@ export function ContactForm() {
         />
       </Field>
 
-      <div className="flex flex-wrap gap-[18px]">
+      <div className="flex flex-wrap gap-5">
         <Field id="budget" label="Budget" error={errors.budget}>
           <select
             id="budget"
@@ -160,7 +160,7 @@ export function ContactForm() {
       </div>
 
       {status.kind === "error" && (
-        <p role="alert" className="rounded-lg border border-bad/40 bg-bad/5 px-4 py-3 text-[15px] text-bad">
+        <p role="alert" className="rounded-md border border-bad/40 bg-bad/5 px-4 py-3 text-base text-bad">
           {status.message} You can also email me at{" "}
           <a className="font-semibold underline" href={`mailto:${site.email}`}>
             {site.email}
@@ -173,11 +173,11 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status.kind === "sending"}
-          className="rounded-lg bg-accent px-[26px] py-[15px] text-base font-semibold text-white transition-colors hover:bg-accent-hover disabled:cursor-wait disabled:opacity-70"
+          className="rounded-full bg-ink px-7 py-4 text-lg font-semibold text-page transition-opacity hover:opacity-85 disabled:cursor-wait disabled:opacity-60"
         >
           {status.kind === "sending" ? "Sending…" : "Send message"}
         </button>
-        <span className="text-sm text-muted">Your details are only used to reply to you.</span>
+        <span className="text-[15px] text-muted">I only use your details to reply to you.</span>
       </div>
     </form>
   );
@@ -198,12 +198,12 @@ function Field({
 }) {
   return (
     <div className={`flex min-w-0 flex-col gap-1.5 ${full ? "" : "flex-[1_1_180px]"}`}>
-      <label htmlFor={id} className="text-sm font-semibold">
+      <label htmlFor={id} className="text-base font-semibold">
         {label}
       </label>
       {children}
       {error && (
-        <p id={`${id}-error`} className="text-sm text-bad">
+        <p id={`${id}-error`} className="text-[15px] text-bad">
           {error}
         </p>
       )}

@@ -12,54 +12,32 @@ export const site = {
     "Full-stack developer for fast websites, bug fixes and automation. React, Next.js, Laravel and Python. Fixed prices, tested code, delivered on time.",
 };
 
-export type Service = {
-  name: string;
-  summary: string;
-  outcomes: string[];
-  priceLabel: "from" | "price";
-  price: string;
-};
+export type Service = { name: string; pitch: string; price: string };
 
 export const services: Service[] = [
   {
     name: "Quick fix",
-    summary: "One broken thing: a form, a layout glitch, a small bug.",
-    outcomes: ["One issue found and fixed", "Tested on phone and desktop", "Short note on what changed"],
-    priceLabel: "from",
-    price: "$25",
+    pitch:
+      "One thing is broken: a form that won't send, a button that does nothing, a layout that falls apart on phones. I find it, fix it, test it on a phone and a laptop, and tell you what was wrong.",
+    price: "from $25",
   },
   {
-    name: "Bug fix and improvement",
-    summary: "Several bugs, speed or mobile problems, accessibility fixes.",
-    outcomes: [
-      "Repaired and tested on phone and desktop",
-      "Accessibility checked against WCAG AA",
-      "Written summary of what changed",
-    ],
-    priceLabel: "from",
-    price: "$60",
+    name: "Bug fix and tidy-up",
+    pitch:
+      "A handful of problems at once: slow pages, mobile glitches, text that's hard to read. I fix them, check the site against accessibility rules (WCAG AA), and send you a written summary.",
+    price: "from $60",
   },
   {
-    name: "Page or small site build",
-    summary: "A landing page, business site or portfolio built from your design.",
-    outcomes: [
-      "Responsive build in Next.js or Laravel",
-      "Contact or booking form wired up",
-      "Deployed, with the source code handed over",
-    ],
-    priceLabel: "from",
-    price: "$120",
+    name: "Page or small site",
+    pitch:
+      "A landing page, a business site or a portfolio, built from your design in Next.js or Laravel. Forms wired up, deployed, and the source code is yours.",
+    price: "from $120",
   },
   {
     name: "Automation",
-    summary: "Python scripts and Excel reports that replace manual work.",
-    outcomes: [
-      "One command turns a messy export into a clean report",
-      "Every change logged, nothing altered silently",
-      "Tests and a one-page guide included",
-    ],
-    priceLabel: "price",
-    price: "Quote",
+    pitch:
+      "If you clean the same spreadsheet every month, I can probably turn that into one command. Python scripts and Excel reports, with every change logged so you can trust the numbers.",
+    price: "ask me",
   },
 ];
 
@@ -69,7 +47,6 @@ export type ClientProject = {
   summary: string;
   url: string;
   stack: string[];
-  tint: "blue" | "teal" | "violet" | "amber" | "rose";
 };
 
 export const clientWork: ClientProject[] = [
@@ -80,7 +57,6 @@ export const clientWork: ClientProject[] = [
       "One-page academic portfolio with an admin panel to edit every section, publications and a CV download.",
     url: "https://portfolio-abir-hossain.vercel.app/",
     stack: ["Next.js 15", "Supabase", "Admin panel"],
-    tint: "blue",
   },
   {
     client: "Lamia Tasnim",
@@ -89,7 +65,6 @@ export const clientWork: ClientProject[] = [
       "Publications, awards and experience, a contact form with email notifications, and an admin panel with media uploads.",
     url: "https://lamia-tasnim-portfolio.vercel.app/",
     stack: ["Next.js", "Supabase", "Resend"],
-    tint: "teal",
   },
   {
     client: "Md Amir Hossen",
@@ -97,7 +72,6 @@ export const clientWork: ClientProject[] = [
     summary: "Research experience, submitted papers with PDF links, skills, a contact form and CV download.",
     url: "https://portfolio-db-amir-one.vercel.app/",
     stack: ["Next.js", "Supabase", "Contact form"],
-    tint: "violet",
   },
   {
     client: "Bidhita Islam Chowdhury",
@@ -105,7 +79,6 @@ export const clientWork: ClientProject[] = [
     summary: "Education timeline, publications with DOI links, awards, skills and a message form.",
     url: "https://portfolio-project-bidhita-islam.vercel.app/",
     stack: ["Next.js", "Message form"],
-    tint: "amber",
   },
   {
     client: "Md Ammar Hossain",
@@ -113,7 +86,6 @@ export const clientWork: ClientProject[] = [
     summary: "Publications, awards, training, a blog and a contact section.",
     url: "https://portfolio-ammar-hossen.vercel.app/",
     stack: ["Next.js", "Blog"],
-    tint: "rose",
   },
 ];
 
@@ -168,11 +140,28 @@ export const caseStudies: CaseStudyCard[] = [
 ];
 
 export const process = [
-  { step: "Brief", text: "You describe the project. I reply within 24 hours with questions and a fixed price." },
-  { step: "Agree", text: "We confirm scope, price and deadline in writing." },
-  { step: "Build", text: "You get a preview link to review as the work progresses." },
-  { step: "Revise", text: "One round of revisions is included in the price." },
-  { step: "Handover", text: "Source code, a short setup guide, and a 7-day bug-fix window after delivery." },
+  { step: "You tell me what you need", text: "A few lines is enough. I reply within 24 hours with questions and a fixed price." },
+  { step: "We agree it in writing", text: "Scope, price and deadline, so nobody is guessing later." },
+  { step: "I build, you watch", text: "You get a preview link and can look at the work while it's in progress." },
+  { step: "You ask for changes", text: "One round of revisions is included in the price." },
+  { step: "I hand it over", text: "Source code, a short setup guide, and 7 days of free fixes if anything I built misbehaves." },
 ];
+
+export const copy = {
+  hello: "Hi, I'm Rabiul.",
+  heroIntro:
+    "I'm a full-stack developer in Dhaka, working with small teams in the UK, Europe and the US. React, Next.js, Laravel and Python. You get a fixed price before I start, and a plain-English note of what I did when I finish.",
+  heroStatus: "Taking on new projects now. I usually reply within a day.",
+  servicesIntro: "Prices are where each job starts. You get a fixed quote before I touch anything.",
+  note: "Not sure which one you need? Describe the problem and I'll tell you the cheapest way to solve it.",
+  workIntro: "Five researchers and academics, five live sites. Click through, they're all real.",
+  studiesIntro: "Three projects of my own, written up so you can see how I think.",
+  about: [
+    "By day I'm a software engineer. I build enterprise systems in Java and Spring Boot that more than 10,000 people use. That job taught me to test what I write, keep things secure, and leave code the next person can read.",
+    "Freelance work happens in my evenings and weekends, Dhaka time. In practice, you send something at the end of your day and it's often done when you wake up.",
+    "The tools I reach for most: React, Next.js, TypeScript and Tailwind on the front end. Laravel, PHP and Java behind it. MySQL, PostgreSQL and Supabase for data. Python and pandas for automation. Playwright and pytest to prove it works.",
+  ],
+  contactIntro: "A few lines is fine. Tell me what's broken or what you want built, and I'll reply within one working day.",
+};
 
 export const budgets = ["Under $60", "$60 to $120", "$120 to $500", "Over $500", "Not sure yet"];

@@ -21,11 +21,11 @@ export default function Home() {
     address: { "@type": "PostalAddress", addressLocality: "Dhaka", addressCountry: "BD" },
     founder: { "@type": "Person", name: site.name, jobTitle: site.role, sameAs: [site.github, site.upwork] },
     makesOffer: services
-      .filter((s) => s.price.startsWith("$"))
+      .filter((s) => s.price.includes("$"))
       .map((s) => ({
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: s.name, description: s.summary },
-        priceSpecification: { "@type": "PriceSpecification", minPrice: Number(s.price.slice(1)), priceCurrency: "USD" },
+        itemOffered: { "@type": "Service", name: s.name, description: s.pitch },
+        priceSpecification: { "@type": "PriceSpecification", minPrice: Number(s.price.split("$")[1]), priceCurrency: "USD" },
       })),
   };
 

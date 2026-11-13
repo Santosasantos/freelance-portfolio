@@ -2,12 +2,12 @@ import { site } from "@/content/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-surface">
-      <div className="mx-auto flex max-w-site flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-6 text-sm text-muted sm:px-6">
+    <footer className="border-t border-line">
+      <div className="mx-auto flex max-w-site flex-wrap items-center justify-between gap-x-8 gap-y-3 px-5 py-8 text-[15px] text-muted sm:px-8">
         <span>
-          © {new Date().getFullYear()} {site.name} · {site.location}
+          © {new Date().getFullYear()} {site.name}. Made in Dhaka.
         </span>
-        <span className="flex flex-wrap gap-x-5 gap-y-2">
+        <span className="flex flex-wrap gap-x-6 gap-y-2">
           <a className="link" href={`mailto:${site.email}`}>
             {site.email}
           </a>

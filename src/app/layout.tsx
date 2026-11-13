@@ -7,22 +7,22 @@ import { site } from "@/content/site";
 import { siteUrl } from "@/lib/url";
 import "./globals.css";
 
-const inter = localFont({
-  src: "./fonts/inter-latin-wght-normal.woff2",
-  variable: "--font-inter",
-  weight: "100 900",
+const body = localFont({
+  src: "./fonts/figtree-latin-wght-normal.woff2",
+  variable: "--font-body",
+  weight: "300 900",
   display: "swap",
 });
-const manrope = localFont({
-  src: "./fonts/manrope-latin-wght-normal.woff2",
-  variable: "--font-manrope",
+const display = localFont({
+  src: "./fonts/bricolage-grotesque-latin-wght-normal.woff2",
+  variable: "--font-display",
   weight: "200 800",
   display: "swap",
 });
-const mono = localFont({
-  src: "./fonts/jetbrains-mono-latin-wght-normal.woff2",
-  variable: "--font-mono",
-  weight: "100 800",
+const hand = localFont({
+  src: "./fonts/caveat-latin-wght-normal.woff2",
+  variable: "--font-hand",
+  weight: "400 700",
   display: "swap",
 });
 
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F4F6F8" },
-    { media: "(prefers-color-scheme: dark)", color: "#0A101D" },
+    { media: "(prefers-color-scheme: light)", color: "#FAFAF6" },
+    { media: "(prefers-color-scheme: dark)", color: "#151513" },
   ],
 };
 
@@ -55,14 +55,14 @@ const themeScript = `try{var t=localStorage.getItem("theme");if(t==="light"||t==
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${manrope.variable} ${mono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${body.variable} ${display.variable} ${hand.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-surface focus:px-4 focus:py-3 focus:font-semibold"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-surface focus:text-ink focus:px-4 focus:py-3 focus:font-semibold"
         >
           Skip to content
         </a>

@@ -2,65 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design A: cool paper and navy ink, one blue accent. Colours are RGB triplets for Tailwind alpha. */
+/* Paper and ink, a yellow highlighter, one blue for links. Colours are RGB triplets for Tailwind alpha. */
 :root {
-  --page: 244 246 248;
+  --page: 250 250 246;
   --surface: 255 255 255;
-  --sunken: 234 238 244;
-  --ink: 14 27 51;
-  --body: 54 66 89;
-  --muted: 74 86 112;
-  --line: 217 223 232;
-  --field: 135 146 166;
-  --accent: 29 78 216;
-  --accent-hover: 22 59 166;
-  --link: 29 78 216;
-  --accent-soft: 230 236 251;
-  --good: 11 107 58;
-  --good-dot: 18 161 80;
-  --bad: 180 35 24;
-  --night: 14 27 51;
+  --sunken: 240 240 233;
+  --ink: 26 26 23;
+  --body: 60 60 54;
+  --muted: 97 97 88;
+  --line: 222 222 212;
+  --field: 138 138 126;
+  --link: 33 64 217;
+  --hl: 255 226 92;
+  --good: 22 101 52;
+  --good-dot: 34 160 84;
+  --bad: 176 36 24;
   color-scheme: light;
 }
 
 :root[data-theme="dark"] {
-  --page: 10 16 29;
-  --surface: 17 26 44;
-  --sunken: 23 34 56;
-  --ink: 232 237 246;
-  --body: 195 204 220;
-  --muted: 160 172 194;
-  --line: 38 52 78;
-  --field: 104 120 150;
-  --accent: 47 99 230;
-  --accent-hover: 33 80 200;
-  --link: 130 168 255;
-  --accent-soft: 26 40 74;
-  --good: 110 220 160;
-  --good-dot: 40 190 110;
-  --bad: 255 140 130;
-  --night: 23 34 56;
+  --page: 21 21 19;
+  --surface: 30 30 27;
+  --sunken: 36 36 32;
+  --ink: 242 242 234;
+  --body: 208 208 198;
+  --muted: 163 163 152;
+  --line: 54 54 48;
+  --field: 120 120 110;
+  --link: 152 176 255;
+  --hl: 110 90 8;
+  --good: 120 220 160;
+  --good-dot: 60 190 120;
+  --bad: 255 150 138;
   color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --page: 10 16 29;
-    --surface: 17 26 44;
-    --sunken: 23 34 56;
-    --ink: 232 237 246;
-    --body: 195 204 220;
-    --muted: 160 172 194;
-    --line: 38 52 78;
-    --field: 104 120 150;
-    --accent: 47 99 230;
-    --accent-hover: 33 80 200;
-    --link: 130 168 255;
-    --accent-soft: 26 40 74;
-    --good: 110 220 160;
-    --good-dot: 40 190 110;
-    --bad: 255 140 130;
-    --night: 23 34 56;
+    --page: 21 21 19;
+    --surface: 30 30 27;
+    --sunken: 36 36 32;
+    --ink: 242 242 234;
+    --body: 208 208 198;
+    --muted: 163 163 152;
+    --line: 54 54 48;
+    --field: 120 120 110;
+    --link: 152 176 255;
+    --hl: 110 90 8;
+    --good: 120 220 160;
+    --good-dot: 60 190 120;
+    --bad: 255 150 138;
     color-scheme: dark;
   }
 }
@@ -72,6 +63,8 @@ html {
 
 body {
   @apply bg-page text-ink font-sans antialiased;
+  font-size: 17px;
+  line-height: 1.6;
   text-rendering: optimizeLegibility;
 }
 
@@ -90,22 +83,31 @@ h3 {
 .link {
   color: rgb(var(--link));
   text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
 }
 .link:hover {
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 2.5px;
+}
+
+/* Highlighter pen over the lower part of the words. */
+.hl {
+  background-image: linear-gradient(transparent 58%, rgb(var(--hl)) 58%, rgb(var(--hl)) 94%, transparent 94%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding-inline: 0.08em;
+  margin-inline: -0.08em;
 }
 
 /* Reveal on scroll: content stays visible without JS; JS adds the class only to off-screen items. */
 .reveal-pending {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(12px);
 }
 .reveal-done {
   opacity: 1;
   transform: none;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
