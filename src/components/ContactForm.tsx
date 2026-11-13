@@ -9,7 +9,7 @@ type Status = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind
 const empty: ContactInput = { name: "", email: "", need: "", budget: budgets[4], deadline: "", website: "" };
 
 const inputClass =
-  "w-full min-w-0 rounded-md border border-field bg-surface px-4 py-3 text-[17px] text-ink placeholder:text-muted transition-colors focus:border-ink aria-[invalid=true]:border-bad";
+  "w-full min-w-0 rounded-xl border border-line bg-page px-4 py-3.5 text-base text-ink placeholder:text-muted transition-colors focus:border-link aria-[invalid=true]:border-bad";
 
 export function ContactForm() {
   const [values, setValues] = useState<ContactInput>(empty);
@@ -53,7 +53,7 @@ export function ContactForm() {
 
   if (status.kind === "sent") {
     return (
-      <div role="status" className="flex flex-col gap-3 self-start bg-sunken p-7">
+      <div role="status" className="card flex flex-col gap-3 self-start p-8">
         <h3 className="font-display text-2xl font-bold">Thanks, your message is on its way</h3>
         <p className="text-body">I will reply within one working day. Check your spam folder if you do not hear back.</p>
         <button type="button" onClick={() => setStatus({ kind: "idle" })} className="link self-start py-2 text-left font-semibold">
@@ -69,7 +69,7 @@ export function ContactForm() {
       onSubmit={onSubmit}
       noValidate
       aria-label="Project enquiry"
-      className="flex flex-col gap-5"
+      className="card flex flex-col gap-5 p-6 sm:p-8"
     >
       <div className="flex flex-wrap gap-5">
         <Field id="name" label="Your name" error={errors.name}>
@@ -173,7 +173,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status.kind === "sending"}
-          className="rounded-full bg-ink px-7 py-4 text-lg font-semibold text-page transition-opacity hover:opacity-85 disabled:cursor-wait disabled:opacity-60"
+          className="rounded-full bg-accent px-8 py-4 text-base font-semibold text-white transition hover:brightness-110 disabled:cursor-wait disabled:opacity-60"
         >
           {status.kind === "sending" ? "Sending…" : "Send message"}
         </button>

@@ -5,8 +5,8 @@ The site I send to clients: services with starting prices, live client work, cas
 ## Stack
 
 - Next.js 14 (App Router), React 18, TypeScript
-- Tailwind CSS with light and dark themes (follows the visitor's system setting, with a toggle)
-- Self-hosted fonts: Bricolage Grotesque, Figtree, Caveat
+- Tailwind CSS, dark by default with a light theme toggle
+- Self-hosted fonts: Sora, Manrope
 - Contact form → `/api/contact` → email through [Resend](https://resend.com)
 
 ## Edit the content

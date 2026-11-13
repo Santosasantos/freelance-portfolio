@@ -4,10 +4,9 @@ import { useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
 
+// The site is dark unless the visitor has switched to light.
 function currentTheme(): Theme {
-  const set = document.documentElement.getAttribute("data-theme");
-  if (set === "light" || set === "dark") return set;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
 }
 
 export function ThemeToggle() {
@@ -26,7 +25,7 @@ export function ThemeToggle() {
     setTheme(next);
   }
 
-  const label = theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
+  const label = theme === "light" ? "Switch to dark theme" : "Switch to light theme";
 
   return (
     <button
@@ -34,9 +33,9 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={label}
       title={label}
-      className="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink transition-colors hover:bg-sunken"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-accent"
     >
-      {theme === "dark" ? (
+      {theme !== "light" ? (
         <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
           <circle cx="12" cy="12" r="4" />
           <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />

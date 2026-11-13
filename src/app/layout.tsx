@@ -8,21 +8,15 @@ import { siteUrl } from "@/lib/url";
 import "./globals.css";
 
 const body = localFont({
-  src: "./fonts/figtree-latin-wght-normal.woff2",
+  src: "./fonts/manrope-latin-wght-normal.woff2",
   variable: "--font-body",
-  weight: "300 900",
-  display: "swap",
-});
-const display = localFont({
-  src: "./fonts/bricolage-grotesque-latin-wght-normal.woff2",
-  variable: "--font-display",
   weight: "200 800",
   display: "swap",
 });
-const hand = localFont({
-  src: "./fonts/caveat-latin-wght-normal.woff2",
-  variable: "--font-hand",
-  weight: "400 700",
+const display = localFont({
+  src: "./fonts/sora-latin-wght-normal.woff2",
+  variable: "--font-display",
+  weight: "100 800",
   display: "swap",
 });
 
@@ -43,19 +37,14 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title, description: site.description },
 };
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FAFAF6" },
-    { media: "(prefers-color-scheme: dark)", color: "#151513" },
-  ],
-};
+export const viewport: Viewport = { themeColor: "#08090D" };
 
 // Applies a saved theme before first paint, so there is no flash of the wrong theme.
 const themeScript = `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${body.variable} ${display.variable} ${hand.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${body.variable} ${display.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

@@ -1,90 +1,91 @@
 import Image from "next/image";
 import Link from "next/link";
-import { caseStudies, clientWork, copy, type CaseStudyCard } from "@/content/site";
+import { caseStudies, clientWork, copy } from "@/content/site";
+import { SectionHead } from "./Eyebrow";
+
+const glows = ["from-[#2563EB]/45", "from-[#0EA5A0]/45", "from-[#7C5CFC]/45", "from-[#E08A1E]/40", "from-[#E0527A]/40"];
+
+function initials(name: string) {
+  const parts = name.replace(/^Md\.?\s+/i, "").split(/\s+/);
+  return (parts[0][0] + (parts[1]?.[0] ?? "")).toUpperCase();
+}
 
 export function Work() {
-  const [lead, ...rest] = caseStudies;
   return (
-    <section id="work" aria-labelledby="work-title" className="mx-auto max-w-site px-5 py-20 sm:px-8">
-      <h2 id="work-title" className="font-display text-4xl font-bold tracking-[-0.03em] sm:text-5xl">
-        Sites I&apos;ve built for clients
-      </h2>
-      <p className="mt-4 max-w-[52ch] text-lg text-body">{copy.workIntro}</p>
+    <section id="work" aria-labelledby="work-title" className="border-t border-line bg-sunken/40">
+      <div className="mx-auto max-w-site px-5 py-24 sm:px-8">
+        <SectionHead id="work-title" eyebrow="Client work" title="Sites I have built for clients" intro={copy.workIntro} />
 
-      <ul className="mt-10 border-t border-line">
-        {clientWork.map((c) => (
-          <li key={c.client} className="border-b border-line" data-reveal>
-            <a
-              href={c.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group -mx-3 grid items-baseline gap-x-10 gap-y-1.5 rounded-md px-3 py-6 transition-colors hover:bg-sunken md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)_auto]"
-            >
-              <span>
-                <span className="block font-display text-[26px] font-semibold leading-tight tracking-[-0.015em]">{c.client}</span>
-                <span className="mt-1 block text-base text-muted">{c.role}</span>
-              </span>
-              <span className="text-body">{c.summary}</span>
-              <span className="whitespace-nowrap font-semibold text-link">
-                Visit{" "}
-                <span aria-hidden="true" className="inline-block transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                  ↗
+        <ul className="mt-12 grid grid-cols-[repeat(auto-fill,minmax(min(100%,320px),1fr))] gap-6">
+          {clientWork.map((c, i) => (
+            <li key={c.client} data-reveal>
+              <a href={c.url} target="_blank" rel="noopener noreferrer" className="card card-glow group flex h-full flex-col overflow-hidden">
+                <span aria-hidden="true" className={`relative flex aspect-[16/9] items-center justify-center overflow-hidden bg-gradient-to-br ${glows[i % glows.length]} via-surface to-page`}>
+                  <span className="font-display text-[88px] font-extrabold leading-none tracking-tight text-ink/90 transition-transform duration-500 group-hover:scale-110">{initials(c.client)}</span>
+                  <span className="absolute bottom-3 left-4 rounded-full bg-page/70 px-3 py-1 text-[12px] text-body">{new URL(c.url).hostname}</span>
                 </span>
-                <span className="sr-only"> (opens in a new tab)</span>
-              </span>
-            </a>
+                <span className="flex flex-1 flex-col gap-2 p-6">
+                  <span className="text-[13px] font-semibold uppercase tracking-[0.1em] text-link">{c.role}</span>
+                  <span className="font-display text-[22px] font-semibold leading-tight">{c.client}</span>
+                  <span className="flex-1 text-[15px] text-body">{c.summary}</span>
+                  <span className="mt-2 flex flex-wrap gap-2">
+                    {c.stack.map((s) => (
+                      <span key={s} className="rounded-full border border-line px-3 py-1 text-[12px] text-muted">
+                        {s}
+                      </span>
+                    ))}
+                  </span>
+                  <span className="mt-3 font-semibold text-link">
+                    Visit live site ↗<span className="sr-only"> (opens in a new tab)</span>
+                  </span>
+                </span>
+              </a>
+            </li>
+          ))}
+          <li data-reveal>
+            <div className="flex h-full flex-col justify-between gap-6 rounded-2xl bg-[#1D4ED8] p-8 text-white">
+              <div>
+                <p className="text-[13px] font-bold uppercase tracking-[0.14em] text-white">Next on this list</p>
+                <p className="mt-3 font-display text-[32px] font-bold leading-tight">Your project</p>
+                <p className="mt-3 text-white">Tell me what you need. I reply within 24 hours with questions and a fixed price.</p>
+              </div>
+              <Link href="/#contact" className="self-start rounded-full bg-white px-7 py-3.5 font-semibold text-[#0D111C] transition hover:bg-white/90">
+                Start a project →
+              </Link>
+            </div>
           </li>
-        ))}
-      </ul>
-      <p className="mt-6 text-lg">
-        Yours could be the sixth.{" "}
-        <Link href="/#contact" className="link">
-          Tell me about it
-        </Link>
-        .
-      </p>
+        </ul>
 
-      <h2 className="mt-24 font-display text-3xl font-bold tracking-[-0.025em] sm:text-4xl">Things I built to show how I work</h2>
-      <p className="mt-4 max-w-[52ch] text-lg text-body">{copy.studiesIntro}</p>
-
-      <article className="mt-10 grid items-center gap-x-12 gap-y-6 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]" data-reveal>
-        <Shot c={lead} sizes="(max-width: 768px) 100vw, 620px" />
-        <Words c={lead} />
-      </article>
-
-      <div className="mt-16 grid gap-x-12 gap-y-14 md:grid-cols-2">
-        {rest.map((c, i) => (
-          <article key={c.title} className={`flex flex-col gap-5 ${i === 1 ? "md:mt-16" : ""}`} data-reveal>
-            <Shot c={c} sizes="(max-width: 768px) 100vw, 500px" />
-            <Words c={c} />
-          </article>
-        ))}
+        <div className="mt-24">
+          <SectionHead eyebrow="Case studies" title="Projects that show how I work" intro={copy.studiesIntro} />
+        </div>
+        <ul className="mt-12 grid grid-cols-[repeat(auto-fill,minmax(min(100%,320px),1fr))] gap-6">
+          {caseStudies.map((c) => (
+            <li key={c.title} data-reveal>
+              <article className="card card-glow group flex h-full flex-col overflow-hidden">
+                <div className="overflow-hidden">
+                  <Image src={c.image} alt={c.imageAlt} width={1600} height={1200} sizes="(max-width: 700px) 100vw, 380px" className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                </div>
+                <div className="flex flex-1 flex-col gap-2 p-6">
+                  <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-link">{c.kind}</p>
+                  <h3 className="font-display text-[22px] font-semibold leading-tight">{c.title}</h3>
+                  <p className="flex-1 text-[15px] text-body">{c.summary}</p>
+                  <p className="text-[13px] text-muted">{c.stack}</p>
+                  {c.external ? (
+                    <a href={c.href} target="_blank" rel="noopener noreferrer" className="mt-2 self-start py-1 font-semibold text-link hover:underline">
+                      {c.cta} ↗<span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  ) : (
+                    <Link href={c.href} className="mt-2 self-start py-1 font-semibold text-link hover:underline">
+                      {c.cta} →<span className="sr-only">: {c.title}</span>
+                    </Link>
+                  )}
+                </div>
+              </article>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
-  );
-}
-
-function Shot({ c, sizes }: { c: CaseStudyCard; sizes: string }) {
-  return <Image src={c.image} alt={c.imageAlt} width={1600} height={1200} sizes={sizes} className="aspect-[4/3] w-full rounded-md object-cover" />;
-}
-
-function Words({ c }: { c: CaseStudyCard }) {
-  const linkClass = "link mt-1 inline-block self-start py-2 font-semibold";
-  return (
-    <div className="flex flex-col gap-2.5">
-      <h3 className="font-display text-[26px] font-semibold leading-tight tracking-[-0.015em]">{c.title}</h3>
-      <p className="max-w-[48ch] text-body">{c.summary}</p>
-      <p className="text-base text-muted">{c.stack}</p>
-      {c.external ? (
-        <a href={c.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
-          {c.cta} ↗<span className="sr-only"> (opens in a new tab)</span>
-        </a>
-      ) : (
-        <Link href={c.href} className={linkClass}>
-          {c.cta}
-          <span className="sr-only">: {c.title}</span>
-        </Link>
-      )}
-    </div>
   );
 }

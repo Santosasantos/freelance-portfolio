@@ -33,7 +33,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       <h1 className="mt-8 font-display text-4xl font-bold leading-[1.06] tracking-[-0.03em] sm:text-[52px]">{c.title}</h1>
       <p className="mt-6 text-xl leading-relaxed text-body">{c.intro}</p>
 
-      <dl className="mt-9 grid grid-cols-2 gap-x-8 gap-y-5 border-y border-line py-6 sm:grid-cols-4">
+      <dl className="card mt-9 grid grid-cols-2 gap-x-8 gap-y-5 p-6 sm:grid-cols-4">
         {c.facts.map((f) => (
           <div key={f.label}>
             <dt className="text-[15px] text-muted">{f.label}</dt>
@@ -67,8 +67,8 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             )}
             {s.figure && (
               <figure className="mt-3 sm:-mx-8">
-                <Image src={s.figure.src} alt={s.figure.alt} width={1600} height={1200} sizes="(max-width: 800px) 100vw, 800px" className="w-full rounded-md" />
-                <figcaption className="mt-3 font-hand text-2xl text-muted sm:px-8">{s.figure.caption}</figcaption>
+                <Image src={s.figure.src} alt={s.figure.alt} width={1600} height={1200} sizes="(max-width: 800px) 100vw, 800px" className="w-full rounded-2xl border border-line" />
+                <figcaption className="mt-3 text-[15px] text-muted sm:px-8">{s.figure.caption}</figcaption>
               </figure>
             )}
           </section>
@@ -78,7 +78,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       <div className="mt-20 border-t border-line pt-10" data-reveal>
         <h2 className="font-display text-3xl font-bold tracking-[-0.025em]">Got a similar problem?</h2>
         <p className="mt-3 text-lg text-body">Tell me about it. I reply within 24 hours with questions and a fixed price.</p>
-        <Link href="/#contact" className="mt-6 inline-block rounded-full bg-ink px-7 py-4 text-lg font-semibold text-page transition-opacity hover:opacity-85">
+        <Link href="/#contact" className="mt-6 inline-block rounded-full bg-accent px-7 py-4 text-base font-semibold text-white transition hover:brightness-110">
           Tell me about your project
         </Link>
       </div>
