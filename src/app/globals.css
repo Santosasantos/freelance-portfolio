@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design A: cool paper and navy ink, one blue accent. Colours are RGB triplets for Tailwind alpha. */
+:root {
+  --page: 244 246 248;
+  --surface: 255 255 255;
+  --sunken: 234 238 244;
+  --ink: 14 27 51;
+  --body: 54 66 89;
+  --muted: 74 86 112;
+  --line: 217 223 232;
+  --field: 135 146 166;
+  --accent: 29 78 216;
+  --accent-hover: 22 59 166;
+  --link: 29 78 216;
+  --accent-soft: 230 236 251;
+  --good: 11 107 58;
+  --good-dot: 18 161 80;
+  --bad: 180 35 24;
+  --night: 14 27 51;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --page: 10 16 29;
+  --surface: 17 26 44;
+  --sunken: 23 34 56;
+  --ink: 232 237 246;
+  --body: 195 204 220;
+  --muted: 160 172 194;
+  --line: 38 52 78;
+  --field: 104 120 150;
+  --accent: 47 99 230;
+  --accent-hover: 33 80 200;
+  --link: 130 168 255;
+  --accent-soft: 26 40 74;
+  --good: 110 220 160;
+  --good-dot: 40 190 110;
+  --bad: 255 140 130;
+  --night: 23 34 56;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page: 10 16 29;
+    --surface: 17 26 44;
+    --sunken: 23 34 56;
+    --ink: 232 237 246;
+    --body: 195 204 220;
+    --muted: 160 172 194;
+    --line: 38 52 78;
+    --field: 104 120 150;
+    --accent: 47 99 230;
+    --accent-hover: 33 80 200;
+    --link: 130 168 255;
+    --accent-soft: 26 40 74;
+    --good: 110 220 160;
+    --good-dot: 40 190 110;
+    --bad: 255 140 130;
+    --night: 23 34 56;
+    color-scheme: dark;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  @apply bg-page text-ink font-sans antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+:focus-visible {
+  outline: 3px solid rgb(var(--link));
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.link {
+  color: rgb(var(--link));
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.link:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Reveal on scroll: content stays visible without JS; JS adds the class only to off-screen items. */
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.reveal-done {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal-pending {
+    opacity: 1;
+    transform: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
