@@ -14,7 +14,7 @@ export function Hero() {
           <h1 className="mt-4 font-display text-[38px] font-bold leading-[1.15] tracking-[-0.025em] sm:text-[54px]">
             I&apos;m {site.name}, a
             <span className="sr-only"> web developer, bug fixer and automation builder.</span>
-            <span className="block min-h-[1.2em] text-link">
+            <span className="block text-link">
               <Typing words={copy.roles} />
             </span>
           </h1>

@@ -3,13 +3,6 @@ import Link from "next/link";
 import { caseStudies, clientWork, copy } from "@/content/site";
 import { SectionHead } from "./Eyebrow";
 
-const glows = ["from-[#2563EB]/45", "from-[#0EA5A0]/45", "from-[#7C5CFC]/45", "from-[#E08A1E]/40", "from-[#E0527A]/40"];
-
-function initials(name: string) {
-  const parts = name.replace(/^Md\.?\s+/i, "").split(/\s+/);
-  return (parts[0][0] + (parts[1]?.[0] ?? "")).toUpperCase();
-}
-
 export function Work() {
   return (
     <section id="work" aria-labelledby="work-title" className="border-t border-line bg-sunken/40">
@@ -17,12 +10,18 @@ export function Work() {
         <SectionHead id="work-title" eyebrow="Client work" title="Sites I have built for clients" intro={copy.workIntro} />
 
         <ul className="mt-12 grid grid-cols-[repeat(auto-fill,minmax(min(100%,320px),1fr))] gap-6">
-          {clientWork.map((c, i) => (
+          {clientWork.map((c) => (
             <li key={c.client} data-reveal>
               <a href={c.url} target="_blank" rel="noopener noreferrer" className="card card-glow group flex h-full flex-col overflow-hidden">
-                <span aria-hidden="true" className={`relative flex aspect-[16/9] items-center justify-center overflow-hidden bg-gradient-to-br ${glows[i % glows.length]} via-surface to-page`}>
-                  <span className="font-display text-[88px] font-extrabold leading-none tracking-tight text-ink/90 transition-transform duration-500 group-hover:scale-110">{initials(c.client)}</span>
-                  <span className="absolute bottom-3 left-4 rounded-full bg-page/70 px-3 py-1 text-[12px] text-body">{new URL(c.url).hostname}</span>
+                <span className="block overflow-hidden">
+                  <Image
+                    src={c.image}
+                    alt={`${c.client}'s website on desktop and phone`}
+                    width={1600}
+                    height={1200}
+                    sizes="(max-width: 700px) 100vw, 380px"
+                    className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </span>
                 <span className="flex flex-1 flex-col gap-2 p-6">
                   <span className="text-[13px] font-semibold uppercase tracking-[0.1em] text-link">{c.role}</span>

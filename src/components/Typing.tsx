@@ -33,10 +33,19 @@ export function Typing({ words }: { words: string[] }) {
     return () => clearTimeout(timer);
   }, [words]);
 
+  // The longest word sits invisibly in the same grid cell, so the line keeps its height
+  // while letters are typed and deleted, even when a word wraps onto two lines.
+  const longest = words.reduce((a, b) => (b.length > a.length ? b : a), "");
   return (
-    <span aria-hidden="true">
-      {text}
-      <span className="caret" />
+    <span aria-hidden="true" className="inline-grid align-top">
+      <span className="invisible col-start-1 row-start-1">
+        {longest}
+        <span className="caret" />
+      </span>
+      <span className="col-start-1 row-start-1">
+        {text}
+        <span className="caret" />
+      </span>
     </span>
   );
 }

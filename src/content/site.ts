@@ -50,6 +50,7 @@ export type ClientProject = {
   role: string;
   summary: string;
   url: string;
+  image: string;
   stack: string[];
 };
 
@@ -60,6 +61,7 @@ export const clientWork: ClientProject[] = [
     summary:
       "One-page academic portfolio with an admin panel to edit every section, publications and a CV download.",
     url: "https://portfolio-abir-hossain.vercel.app/",
+    image: "/images/client-abir.jpg",
     stack: ["Next.js 15", "Supabase", "Admin panel"],
   },
   {
@@ -68,6 +70,7 @@ export const clientWork: ClientProject[] = [
     summary:
       "Publications, awards and experience, a contact form with email notifications, and an admin panel with media uploads.",
     url: "https://lamia-tasnim-portfolio.vercel.app/",
+    image: "/images/client-lamia.jpg",
     stack: ["Next.js", "Supabase", "Resend"],
   },
   {
@@ -75,6 +78,7 @@ export const clientWork: ClientProject[] = [
     role: "Economist and researcher",
     summary: "Research experience, submitted papers with PDF links, skills, a contact form and CV download.",
     url: "https://portfolio-db-amir-one.vercel.app/",
+    image: "/images/client-amir.jpg",
     stack: ["Next.js", "Supabase", "Contact form"],
   },
   {
@@ -82,6 +86,7 @@ export const clientWork: ClientProject[] = [
     role: "Applied mathematics lecturer",
     summary: "Education timeline, publications with DOI links, awards, skills and a message form.",
     url: "https://portfolio-project-bidhita-islam.vercel.app/",
+    image: "/images/client-bidhita.jpg",
     stack: ["Next.js", "Message form"],
   },
   {
@@ -89,6 +94,7 @@ export const clientWork: ClientProject[] = [
     role: "Social science researcher",
     summary: "Publications, awards, training, a blog and a contact section.",
     url: "https://portfolio-ammar-hossen.vercel.app/",
+    image: "/images/client-ammar.jpg",
     stack: ["Next.js", "Blog"],
   },
 ];
