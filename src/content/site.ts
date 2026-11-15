@@ -3,7 +3,11 @@
 export const site = {
   name: "Md Rabiul Islam",
   role: "Full-stack developer",
-  email: "rabiul.devs@gmail.com",
+  // Shown to visitors.
+  email: "rabiul@santoosa-santos.tech",
+  // Where contact form messages are delivered. Resend's free sender only delivers to the
+  // address its account was created with; both addresses arrive in the same inbox.
+  formInbox: "rabiul.devs@gmail.com",
   upwork: "https://www.upwork.com/freelancers/~017684c12e41be0877",
   github: "https://github.com/Santosasantos",
   location: "Dhaka, Bangladesh",

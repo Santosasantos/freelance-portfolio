@@ -34,7 +34,7 @@ npm run typecheck
 |---|---|---|
 | `RESEND_API_KEY` | Yes, for the form | Sends contact form messages |
 | `NEXT_PUBLIC_SITE_URL` | Recommended | Public address, used for canonical links, sitemap and social previews |
-| `CONTACT_TO` | No | Where messages go. Defaults to rabiul.devs@gmail.com |
+| `CONTACT_TO` | No | Where form messages go. Defaults to rabiul.devs@gmail.com (the Resend account email). The site itself shows rabiul@santoosa-santos.tech |
 | `CONTACT_FROM` | No | Sender address on a domain verified in Resend. Without it, Resend's test sender is used, which only delivers to the email the Resend account was created with |
 
 Without `RESEND_API_KEY` the form still validates, then tells the visitor to email me directly.

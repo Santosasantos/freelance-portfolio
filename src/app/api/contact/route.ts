@@ -3,7 +3,7 @@ import { readInput, validate } from "@/lib/contact";
 import { site } from "@/content/site";
 
 // Sends contact form messages by email through Resend (https://resend.com).
-// Set RESEND_API_KEY in Vercel. Optional: CONTACT_TO (defaults to the site email) and
+// Set RESEND_API_KEY in Vercel. Optional: CONTACT_TO (defaults to site.formInbox) and
 // CONTACT_FROM (needs a domain verified in Resend; the default test sender only delivers
 // to the email address the Resend account was created with).
 
@@ -71,7 +71,7 @@ export async function POST(request: Request) {
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         from: process.env.CONTACT_FROM || "Portfolio contact form <onboarding@resend.dev>",
-        to: [process.env.CONTACT_TO || site.email],
+        to: [process.env.CONTACT_TO || site.formInbox],
         reply_to: email,
         subject: `New project enquiry from ${name.slice(0, 60)}`,
         text,
